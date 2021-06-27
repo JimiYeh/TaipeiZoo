@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit
 
 object Client {
 
+    val retrofit: Retrofit
     val zooApiService: ZooApiService
 
     init {
@@ -24,7 +25,7 @@ object Client {
 
 
 
-        val retrofit = Retrofit.Builder()
+        retrofit = Retrofit.Builder()
             .baseUrl("https://data.taipei")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)

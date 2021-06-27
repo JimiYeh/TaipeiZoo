@@ -2,15 +2,14 @@ package com.cloudinteractive.taipeizoo.ui.areaList
 
 import com.cloudinteractive.taipeizoo.model.area.GetAreaListResp
 import com.cloudinteractive.taipeizoo.network.ApiResponse
-import com.cloudinteractive.taipeizoo.network.Client
-import com.cloudinteractive.taipeizoo.network.callApi
+import com.cloudinteractive.taipeizoo.repository.ZooRepository
 
-class AreaListPresenter(val view: AreaListContract.View) : AreaListContract.Presenter {
+class AreaListPresenter(private val view: AreaListContract.View) : AreaListContract.Presenter {
 
     override suspend fun fetchAreaList() {
         view.showLoading(true)
 
-        val resp = callApi { Client.zooApiService.getAreaList() }
+        val resp = ZooRepository().fetchAreaList()
 
         view.showLoading(false)
         when (resp) {
@@ -19,7 +18,7 @@ class AreaListPresenter(val view: AreaListContract.View) : AreaListContract.Pres
             }
 
             is ApiResponse.ApiError -> {
-                view.showErrorMessage(resp.responseBody?.toString() ?: "API fail")
+                view.showErrorMessage(resp.errorInfo?.message ?: "unknown API fail")
             }
 
             is ApiResponse.ApiException -> {

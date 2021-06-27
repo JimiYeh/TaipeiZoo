@@ -1,6 +1,7 @@
 package com.cloudinteractive.taipeizoo.ui.areaList
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -38,6 +39,8 @@ class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaListContract
             presenter.fetchAreaList()
         }
 
+        prepareTransitions()
+        postponeEnterTransition()
     }
 
     override fun showLoading(enabled: Boolean) {
@@ -49,11 +52,18 @@ class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaListContract
     }
 
     override fun showErrorMessage(message: String) {
-        Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.context, message, Toast.LENGTH_LONG).show()
     }
 
 
     private fun onAreaItemClick(area: GetAreaListResp.Result.Area) {
+
+    }
+
+
+    fun prepareTransitions() {
+        exitTransition = TransitionInflater.from(context)
+            .inflateTransition(R.transition.area_list_exit_transition)
 
     }
 }

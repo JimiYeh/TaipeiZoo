@@ -15,7 +15,7 @@ data class GetPlantListResp(
         @SerializedName("offset")
         val offset: Int = 0,
         @SerializedName("results")
-        val results: List<Plant> = listOf(),
+        val plants: List<Plant> = listOf(),
         @SerializedName("sort")
         val sort: String = ""
     ) {
