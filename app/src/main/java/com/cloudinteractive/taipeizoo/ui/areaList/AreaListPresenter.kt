@@ -14,11 +14,11 @@ class AreaListPresenter(private val view: AreaListContract.View) : AreaListContr
         view.showLoading(false)
         when (resp) {
             is ApiResponse.ApiSuccess<GetAreaListResp> -> {
-                view.showArea(resp.data?.result?.areas ?: listOf())
+                view.showArea(resp.data.result.areas)
             }
 
             is ApiResponse.ApiError -> {
-                view.showErrorMessage(resp.errorInfo?.message ?: "unknown API fail")
+                view.showErrorMessage("${resp.httpCode} error")
             }
 
             is ApiResponse.ApiException -> {
