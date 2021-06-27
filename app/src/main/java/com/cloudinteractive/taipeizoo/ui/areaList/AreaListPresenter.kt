@@ -8,7 +8,11 @@ import com.cloudinteractive.taipeizoo.network.callApi
 class AreaListPresenter(val view: AreaListContract.View) : AreaListContract.Presenter {
 
     override suspend fun fetchAreaList() {
+        view.showLoading(true)
+
         val resp = callApi { Client.zooApiService.getAreaList() }
+
+        view.showLoading(false)
         when (resp) {
             is ApiResponse.ApiSuccess<GetAreaListResp> -> {
                 view.showArea(resp.data?.result?.areas ?: listOf())

@@ -4,6 +4,7 @@ import com.cloudinteractive.taipeizoo.model.area.GetAreaListResp
 
 class AreaListContract {
     interface View {
+        fun showLoading(enabled: Boolean)
         fun showArea(areaList: List<GetAreaListResp.Result.Area>)
         fun showErrorMessage(message: String)
     }
