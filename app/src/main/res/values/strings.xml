@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Taipei Zoo</string>
     <string name="taipei_zoo">台北市立動物園</string>
+    <string name="open_web_page">在網頁開啟</string>
 </resources>

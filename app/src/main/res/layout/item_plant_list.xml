@@ -46,31 +46,21 @@
             android:textSize="18dp"
             android:textStyle="bold"
             android:singleLine="true"
-            tools:text="昆蟲館"/>
+            tools:text="大安水蓑衣"/>
+
 
         <TextView
-            android:id="@+id/tvMemo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintEnd_toEndOf="@id/tvName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:singleLine="true"
-            android:textSize="14dp"
-            tools:text="每月第四個週一休館"/>
-
-        <TextView
-            android:id="@+id/tvInfo"
+            android:id="@+id/tvAlsoKnown"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/tvName"
             app:layout_constraintEnd_toEndOf="@id/tvName"
             app:layout_constraintTop_toBottomOf="@id/tvName"
-            app:layout_constraintBottom_toTopOf="@id/tvMemo"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:maxLines="2"
             android:ellipsize="end"
             android:textSize="14dp"
-            tools:text="昆蟲館分為五大區域：序幕大廳、多媒體視聽教室、臺灣昆蟲區、生態展示室、昆蟲特展區。除了介紹昆蟲的起源與演化、構造與適應，更有溫室及生態網室，讓遊客身處昆蟲圍繞的環境中。館區後方還有一個擁有豐富昆蟲資源的「蟲蟲探索谷」，為本園進行戶外生態解說教育的場所之一。"/>
+            tools:text="竄心蛇、魚骨草、九節花、毛萼水蓑衣、墨菜"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
