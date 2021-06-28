@@ -1,7 +1,9 @@
 package com.cloudinteractive.taipeizoo.model.area
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class GetAreaListResp(
     @SerializedName("result")
@@ -19,6 +21,7 @@ data class GetAreaListResp(
         @SerializedName("sort")
         val sort: String = ""
     ) {
+        @Parcelize
         data class Area(
             @SerializedName("E_Category")
             val eCategory: String = "",
@@ -38,6 +41,6 @@ data class GetAreaListResp(
             val eURL: String = "",
             @SerializedName("_id")
             val id: Int = 0
-        )
+        ) : Parcelable
     }
 }

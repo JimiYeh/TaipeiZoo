@@ -8,10 +8,12 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.cloudinteractive.taipeizoo.R
 import com.cloudinteractive.taipeizoo.databinding.FragmentAreaListBinding
 import com.cloudinteractive.taipeizoo.model.area.GetAreaListResp
+import com.cloudinteractive.taipeizoo.ui.areaDetail.AreaDetailFragment
 import com.cloudinteractive.taipeizoo.ui.viewBinding
 import kotlinx.coroutines.launch
 
@@ -39,8 +41,8 @@ class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaListContract
             presenter.fetchAreaList()
         }
 
-        prepareTransitions()
-        postponeEnterTransition()
+//        prepareTransitions()
+//        postponeEnterTransition()
     }
 
     override fun showLoading(enabled: Boolean) {
@@ -57,13 +59,18 @@ class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaListContract
 
 
     private fun onAreaItemClick(area: GetAreaListResp.Result.Area) {
+        parentFragmentManager.commit {
+            add(R.id.flContainer, AreaDetailFragment.newInstance(area), AreaDetailFragment::class.simpleName)
+            hide(this@AreaListFragment)
+            setReorderingAllowed(false)
+            addToBackStack(null)
 
+        }
     }
 
 
     fun prepareTransitions() {
         exitTransition = TransitionInflater.from(context)
             .inflateTransition(R.transition.area_list_exit_transition)
-
     }
 }

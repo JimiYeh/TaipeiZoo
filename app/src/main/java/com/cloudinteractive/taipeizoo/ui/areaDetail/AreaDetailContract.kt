@@ -5,9 +5,9 @@ import com.cloudinteractive.taipeizoo.model.plant.GetPlantListResp
 
 class AreaDetailContract {
     interface View {
-        fun showLoading()
+        fun showLoading(enabled: Boolean)
         fun showErrorMessage(message: String)
-        fun updatePlants(pagingData: PagingData<GetPlantListResp.Result.Plant>)
+        suspend fun updatePlants(pagingData: PagingData<GetPlantListResp.Result.Plant>)
     }
 
     interface Presenter {

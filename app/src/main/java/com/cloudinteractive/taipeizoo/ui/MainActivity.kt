@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.commit {
             add(R.id.flContainer, AreaListFragment(), AreaListFragment::class.java.simpleName)
+            setReorderingAllowed(true)
         }
     }
 
@@ -33,8 +34,9 @@ class MainActivity : AppCompatActivity() {
                     // TODO: 2021/6/26 show drawer layout
                 } else
                     onBackPressed()
+
+                return true
             }
-            return true
         }
 
         return super.onOptionsItemSelected(item)
