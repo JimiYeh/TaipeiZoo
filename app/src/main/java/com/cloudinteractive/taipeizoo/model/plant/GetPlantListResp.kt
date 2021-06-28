@@ -1,7 +1,9 @@
 package com.cloudinteractive.taipeizoo.model.plant
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class GetPlantListResp(
     @SerializedName("result")
@@ -19,6 +21,7 @@ data class GetPlantListResp(
         @SerializedName("sort")
         val sort: String = ""
     ) {
+        @Parcelize
         data class Plant(
             @SerializedName("F_AlsoKnown")
             val fAlsoKnown: String = "",
@@ -94,6 +97,8 @@ data class GetPlantListResp(
             val id: Int = 0,
             @SerializedName("rank")
             val rank: Double = 0.0,
-        )
+            @SerializedName("F_Function＆Application")
+            val function: String = ""
+        ) : Parcelable
     }
 }

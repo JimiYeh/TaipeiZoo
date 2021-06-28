@@ -4,7 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -13,6 +15,7 @@ import com.cloudinteractive.taipeizoo.R
 import com.cloudinteractive.taipeizoo.databinding.FragmentAreaDetailBinding
 import com.cloudinteractive.taipeizoo.model.area.GetAreaListResp
 import com.cloudinteractive.taipeizoo.model.plant.GetPlantListResp
+import com.cloudinteractive.taipeizoo.ui.plantDetail.PlantDetailFragment
 import com.cloudinteractive.taipeizoo.ui.viewBinding
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.launch
@@ -44,8 +47,10 @@ class AreaDetailFragment private constructor() : Fragment(R.layout.fragment_area
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        area = arguments?.getParcelable<GetAreaListResp.Result.Area>(BUNDLE_AREA)
+        area = arguments?.getParcelable(BUNDLE_AREA)
             ?: throw IllegalArgumentException("null area")
+
+        updateToolbar()
 
         Glide.with(binding.appbar.ivBanner)
         binding.appbar.apply {
@@ -69,14 +74,16 @@ class AreaDetailFragment private constructor() : Fragment(R.layout.fragment_area
         }
         binding.ervPlantList.setController(plantListEpoxyController)
 
-//        requireActivity().onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//                parentFragmentManager.popBackStack()
-//            }
-//        })
 
         lifecycleScope.launch {
             presenter.fetchPlantList()
+        }
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            updateToolbar()
         }
     }
 
@@ -95,7 +102,19 @@ class AreaDetailFragment private constructor() : Fragment(R.layout.fragment_area
     }
 
 
-    fun onPlantItemClick(plant: GetPlantListResp.Result.Plant) {
+    private fun updateToolbar() {
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+            title = area.eName
+        }
+    }
 
+    private fun onPlantItemClick(plant: GetPlantListResp.Result.Plant) {
+        parentFragmentManager.commit {
+            add(R.id.flContainer, PlantDetailFragment.newInstance(plant), PlantDetailFragment::class.simpleName)
+            hide(this@AreaDetailFragment)
+            setReorderingAllowed(false)
+            addToBackStack(null)
+        }
     }
 }

@@ -20,17 +20,13 @@ class PlantPagingSource(private val keyword: String, private val repository: Zoo
         when (resp) {
             is ApiResponse.ApiSuccess<GetPlantListResp> -> {
                 // 檢查是否還有位完資料
-                resp.data?.result?.plants?.let { plants ->
+                resp.data.result.plants.let { plants ->
                     return LoadResult.Page(
                         data = plants,
                         prevKey = null,
                         nextKey = if (offset + plants.size < resp.data.result.count) offset + plants.size else null,
                     )
-                } ?: return LoadResult.Page(
-                    data = listOf(),
-                    prevKey = null,
-                    nextKey = null,
-                )
+                }
             }
 
             is ApiResponse.ApiError -> {

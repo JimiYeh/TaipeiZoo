@@ -36,6 +36,10 @@ class PlantListEpoxyController(private val onItemClick: (GetPlantListResp.Result
 
             tvName.text = plant.fNameCh
             tvAlsoKnown.text = plant.fAlsoKnown
+
+            clContainer.setOnClickListener {
+                onClick.invoke(plant)
+            }
         }
     }
 }

@@ -2,4 +2,8 @@
     <string name="app_name">Taipei Zoo</string>
     <string name="taipei_zoo">台北市立動物園</string>
     <string name="open_web_page">在網頁開啟</string>
+    <string name="plant_also_known">別名\n%s</string>
+    <string name="plant_brief">簡介\n%s</string>
+    <string name="plant_function">功能性\n%s</string>
+    <string name="plant_last_update">最後更新 : %s</string>
 </resources>

@@ -29,20 +29,20 @@ class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaListContract
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
-            setHomeAsUpIndicator(R.drawable.ic_menu)
-            title = getString(R.string.taipei_zoo)
-        }
-
+        updateToolbar()
 
         binding.ervArea.setController(areaListEpoxyController)
 
         lifecycleScope.launch {
             presenter.fetchAreaList()
         }
+    }
 
-//        prepareTransitions()
-//        postponeEnterTransition()
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden)
+            updateToolbar()
     }
 
     override fun showLoading(enabled: Boolean) {
@@ -58,19 +58,19 @@ class AreaListFragment : Fragment(R.layout.fragment_area_list), AreaListContract
     }
 
 
+    private fun updateToolbar() {
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setHomeAsUpIndicator(R.drawable.ic_menu)
+            title = getString(R.string.taipei_zoo)
+        }
+    }
+
     private fun onAreaItemClick(area: GetAreaListResp.Result.Area) {
         parentFragmentManager.commit {
             add(R.id.flContainer, AreaDetailFragment.newInstance(area), AreaDetailFragment::class.simpleName)
             hide(this@AreaListFragment)
             setReorderingAllowed(false)
             addToBackStack(null)
-
         }
-    }
-
-
-    fun prepareTransitions() {
-        exitTransition = TransitionInflater.from(context)
-            .inflateTransition(R.transition.area_list_exit_transition)
     }
 }

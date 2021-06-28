@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivPlant"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/ivPlant"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvNameCh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="華八仙"/>
+
+            <TextView
+                android:id="@+id/tvNameEn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                tools:text="Chinese hydrangea"/>
+
+            <TextView
+                android:id="@+id/tvAlsoKnown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                tools:text="中國繡球"/>
+
+            <TextView
+                android:id="@+id/tvABrief"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                tools:text="分布於中國南部及西部、菲律賓、琉球及臺灣。在臺灣遍及低中高海拔山區。花期4~9月。本園步道旁山坡地普遍可見。"/>
+
+
+            <TextView
+                android:id="@+id/tvFeature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                tools:text="常綠小灌木，沒有明顯主幹，葉片長度7~12公分，寬度2.5~4公分，呈長橢圓形，邊緣平滑沒有鋸齒或僅有短鋸齒，上表面呈深綠色，下表面綠色偏白，質感類似薄皮革。花穗長在枝條頂端，長度8公分，寬度12公分，光滑無毛，部份花朵沒有繁殖能力，不會形成果實，不孕的花朵有3枚圓形花瓣，花瓣寬度1.2公分。果實呈球狀，直徑僅1.5公厘，頂端還留存3枚雌蕊。"/>
+
+
+            <TextView
+                android:id="@+id/tvFunction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                tools:text="1. 庭園造景、盆栽。\n2. 葉片可代替茶葉泡茶飲用。"/>
+
+            <TextView
+                android:id="@+id/tvLastUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                tools:text="2017/9/4"/>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
